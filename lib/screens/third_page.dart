@@ -43,6 +43,7 @@ class MoviesList extends StatefulWidget {
 class _MoviesListState extends State<MoviesList> {
   final _scrollController = ScrollController();
   bool _showLeftButton = false;
+  bool _showRightButton = true;
 
   @override
   void initState() {
@@ -50,6 +51,8 @@ class _MoviesListState extends State<MoviesList> {
     _scrollController.addListener(() {
       setState(() {
         _showLeftButton = _scrollController.offset >= 256;
+        _showRightButton = _scrollController.position.pixels <
+            _scrollController.position.maxScrollExtent;
       });
     });
   }
@@ -117,30 +120,32 @@ class _MoviesListState extends State<MoviesList> {
                 ),
               ),
               Positioned(
-                top: 0,
-                bottom: 0,
-                right: 0,
-                child: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  child: ElevatedButton(
-                    onPressed: () => _scrollController.animateTo(
-                      _scrollController.offset + 256,
-                      curve: Curves.easeInOut,
-                      duration: Duration(milliseconds: 500),
+                  top: 0,
+                  bottom: 0,
+                  right: 0,
+                  child: Visibility(
+                    visible: _showRightButton,
+                    child: Container(
+                      width: 40.0,
+                      height: 40.0,
+                      child: ElevatedButton(
+                        onPressed: () => _scrollController.animateTo(
+                          _scrollController.offset + 256,
+                          curve: Curves.easeInOut,
+                          duration: Duration(milliseconds: 500),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black.withOpacity(0.5),
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(Icons.arrow_forward),
+                        ),
+                      ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.zero,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Icon(Icons.arrow_forward),
-                    ),
-                  ),
-                ),
-              ),
+                  )),
             ],
           ),
         ),
