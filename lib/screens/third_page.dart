@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +36,7 @@ class MovieList {
 class MoviesList extends StatefulWidget {
   final List<Movie> movies;
 
-  MoviesList({required this.movies});
+  const MoviesList({super.key, required this.movies});
 
   @override
   _MoviesListState createState() => _MoviesListState();
@@ -66,7 +68,7 @@ class _MoviesListState extends State<MoviesList> {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             'Now Playing',
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         SizedBox(
@@ -97,22 +99,22 @@ class _MoviesListState extends State<MoviesList> {
                 left: 0,
                 child: Visibility(
                   visible: _showLeftButton,
-                  child: Container(
+                  child: SizedBox(
                     width: 40.0,
                     height: 40.0,
                     child: ElevatedButton(
                       onPressed: () => _scrollController.animateTo(
                         0,
                         curve: Curves.easeInOut,
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black.withOpacity(0.5),
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         padding: EdgeInsets.zero,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Icon(Icons.arrow_back),
                       ),
                     ),
@@ -125,22 +127,22 @@ class _MoviesListState extends State<MoviesList> {
                   right: 0,
                   child: Visibility(
                     visible: _showRightButton,
-                    child: Container(
+                    child: SizedBox(
                       width: 40.0,
                       height: 40.0,
                       child: ElevatedButton(
                         onPressed: () => _scrollController.animateTo(
                           _scrollController.offset + 256,
                           curve: Curves.easeInOut,
-                          duration: Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 500),
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black.withOpacity(0.5),
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                           padding: EdgeInsets.zero,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Icon(Icons.arrow_forward),
                         ),
                       ),
@@ -155,14 +157,16 @@ class _MoviesListState extends State<MoviesList> {
 }
 
 class ThirdPage extends StatefulWidget {
+  const ThirdPage({super.key});
+
   @override
   _ThirdPageState createState() => _ThirdPageState();
 }
 
 class _ThirdPageState extends State<ThirdPage> {
   Future<List<Movie>> fetchMovies() async {
-    final String apiKey = '4f098a761153500ca2a6a2d39980f694';
-    final String url =
+    const String apiKey = '4f098a761153500ca2a6a2d39980f694';
+    const String url =
         'https://api.themoviedb.org/3/movie/now_playing?api_key=$apiKey';
     final response = await http.get(Uri.parse(url));
     final decodedData = json.decode(response.body);
@@ -175,7 +179,7 @@ class _ThirdPageState extends State<ThirdPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Last Movies'),
+        title: const Text('Last Movies'),
       ),
       body: FutureBuilder(
         future: fetchMovies(),
@@ -186,7 +190,7 @@ class _ThirdPageState extends State<ThirdPage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),

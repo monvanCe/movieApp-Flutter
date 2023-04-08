@@ -4,7 +4,7 @@ import 'package:movieapp/screens/second_page.dart';
 import 'package:movieapp/screens/third_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'MovieApp',
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
-        '/second': (context) => SecondPage(),
-        '/third': (context) => ThirdPage(),
+        '/': (context) => const HomePage(),
+        '/second': (context) => const SecondPage(),
+        '/third': (context) => const ThirdPage(),
       },
     );
   }
