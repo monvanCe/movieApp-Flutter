@@ -186,7 +186,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('Emowl Welcome!'),
+        title: const Text('Welcome monvanCe'),
         actions: [
           IconButton(
             onPressed: () {},
@@ -200,8 +200,8 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: [
             const UserAccountsDrawerHeader(
-              accountName: Text("Emirhan Şahin"),
-              accountEmail: Text("emowl@gmail.com"),
+              accountName: Text("Ömer Faruk Koca"),
+              accountEmail: Text("omerfkoca@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 child: Icon(Icons.person),
               ),
