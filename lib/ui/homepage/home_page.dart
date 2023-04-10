@@ -61,24 +61,6 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       extendBody: true,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {},
-            ),
-            const Text('Ana Sayfa'),
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-            ),
-            const Text('Ara')
-          ],
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
