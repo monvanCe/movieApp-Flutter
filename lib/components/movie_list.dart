@@ -7,13 +7,21 @@ import 'dart:convert';
 import 'package:movieapp/models/movie.dart';
 import 'package:movieapp/network/movie_api.dart';
 
-Widget buildMoviesFutureBuilder() {
+final Map<String, String> apiUrls = {
+  'Now Playing': nowPlayingApi,
+  'Populers': popularApi,
+  'Top Rated': topRatedApi,
+  'Up Coming': upComingApi,
+};
+
+Widget buildMoviesFutureBuilder({required String apiUrl}) {
+  final String url = apiUrls[apiUrl]!;
   return FutureBuilder(
-    future: fetchMovies(),
+    future: fetchMovies(url),
     builder: (context, snapshot) {
       if (snapshot.hasData) {
         final List<Movie> movies = snapshot.data!;
-        return MoviesList(movies: movies);
+        return MoviesList(title: apiUrl, movies: movies);
       } else if (snapshot.hasError) {
         return Center(child: Text('Error: ${snapshot.error}'));
       } else {
@@ -23,8 +31,8 @@ Widget buildMoviesFutureBuilder() {
   );
 }
 
-Future<List<Movie>> fetchMovies() async {
-  final response = await http.get(Uri.parse(nowPlayingApi));
+Future<List<Movie>> fetchMovies(String apiUrl) async {
+  final response = await http.get(Uri.parse(apiUrl));
   final decodedData = json.decode(response.body);
   final MovieList movieList = MovieList.fromJson(decodedData);
   final List<Movie> movies = movieList.movies;
@@ -45,9 +53,11 @@ class MovieList {
 }
 
 class MoviesList extends StatefulWidget {
+  final String title;
   final List<Movie> movies;
 
-  const MoviesList({super.key, required this.movies});
+  const MoviesList({Key? key, required this.title, required this.movies})
+      : super(key: key);
 
   @override
   _MoviesListState createState() => _MoviesListState();
@@ -78,7 +88,7 @@ class _MoviesListState extends State<MoviesList> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            'Now Playing',
+            widget.title,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),

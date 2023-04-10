@@ -83,10 +83,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildMoviesFutureBuilder(),
-            buildMoviesFutureBuilder(),
-            buildMoviesFutureBuilder(),
-            buildMoviesFutureBuilder(),
+            buildMoviesFutureBuilder(apiUrl: "Now Playing"),
+            buildMoviesFutureBuilder(apiUrl: "Populers"),
+            buildMoviesFutureBuilder(apiUrl: "Top Rated"),
+            buildMoviesFutureBuilder(apiUrl: "Up Coming"),
           ],
         ),
       ),
