@@ -6,9 +6,10 @@ import 'dart:convert';
 
 import 'package:movieapp/models/movie.dart';
 import 'package:movieapp/network/movie_api.dart';
+import 'package:movieapp/components/show_movie_details.dart';
 
 final Map<String, String> apiUrls = {
-  'Sinemada': nowPlayingApi,
+  'Vizyonda Olanlar': nowPlayingApi,
   'Popüler': popularApi,
   'En çok Beğenilenler': topRatedApi,
   'Yaklaşanlar': upComingApi,
@@ -102,13 +103,40 @@ class _MoviesListState extends State<MoviesList> {
                 itemCount: widget.movies.length,
                 itemBuilder: (context, index) {
                   final movie = widget.movies[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        'https://image.tmdb.org/t/p/w185${movie.posterPath}',
-                        fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () => showMovieDetails(context, movie),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://image.tmdb.org/t/p/w185${movie.posterPath}',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: Container(
+                              height: 36,
+                              width: 36,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.5),
+                                shape: BoxShape.circle,
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                iconSize: 20.0,
+                                icon: const Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );

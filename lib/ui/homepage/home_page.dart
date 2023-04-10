@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:movieapp/components/movie_list.dart';
+import 'package:movieapp/datas/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,13 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Center(child: Text('Hoşgeldin monvanCe')),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.account_circle_outlined),
-          ),
-        ],
+        title: const Center(child: Text('Hoşgeldin $titleText')),
       ),
       drawer: Drawer(
         backgroundColor: Colors.black,
@@ -31,8 +26,8 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: [
             const UserAccountsDrawerHeader(
-              accountName: Text("Ömer Faruk Koca"),
-              accountEmail: Text("omerfkoca@gmail.com"),
+              accountName: Text(accountName),
+              accountEmail: Text(accountEmail),
               currentAccountPicture: CircleAvatar(
                 child: Icon(Icons.person),
               ),
@@ -58,14 +53,16 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+        ),
       ),
       extendBody: true,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildMoviesFutureBuilder(apiUrl: "Sinemada"),
+            buildMoviesFutureBuilder(apiUrl: "Vizyonda Olanlar"),
             buildMoviesFutureBuilder(apiUrl: "Popüler"),
             buildMoviesFutureBuilder(apiUrl: "En çok Beğenilenler"),
             buildMoviesFutureBuilder(apiUrl: "Yaklaşanlar"),

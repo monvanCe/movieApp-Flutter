@@ -24,12 +24,6 @@ class _MyAppState extends State<MyApp> {
     const FavoritesPage(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,24 +31,42 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.dark(),
       title: 'MovieApp',
       home: Scaffold(
-        body: _pages[_selectedIndex],
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _pages,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.black,
-          unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.red,
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.white,
           currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          unselectedFontSize: 12,
+          selectedFontSize: 12,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.movie,
+                size: 32,
+              ),
               label: 'Ana Sayfa',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(
+                Icons.search,
+                size: 32,
+              ),
               label: 'Ara',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
+              icon: Icon(
+                Icons.favorite,
+                size: 32,
+              ),
               label: 'Favoriler',
             ),
           ],
