@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Center(child: Text('Welcome monvanCe')),
+        title: const Center(child: Text('Hoşgeldin monvanCe')),
         actions: [
           IconButton(
             onPressed: () {},
@@ -83,10 +83,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildMoviesFutureBuilder(apiUrl: "Now Playing"),
-            buildMoviesFutureBuilder(apiUrl: "Populers"),
-            buildMoviesFutureBuilder(apiUrl: "Top Rated"),
-            buildMoviesFutureBuilder(apiUrl: "Up Coming"),
+            buildMoviesFutureBuilder(apiUrl: "Sinemada"),
+            buildMoviesFutureBuilder(apiUrl: "Popüler"),
+            buildMoviesFutureBuilder(apiUrl: "En çok Beğenilenler"),
+            buildMoviesFutureBuilder(apiUrl: "Yaklaşanlar"),
           ],
         ),
       ),

@@ -8,10 +8,10 @@ import 'package:movieapp/models/movie.dart';
 import 'package:movieapp/network/movie_api.dart';
 
 final Map<String, String> apiUrls = {
-  'Now Playing': nowPlayingApi,
-  'Populers': popularApi,
-  'Top Rated': topRatedApi,
-  'Up Coming': upComingApi,
+  'Sinemada': nowPlayingApi,
+  'Popüler': popularApi,
+  'En çok Beğenilenler': topRatedApi,
+  'Yaklaşanlar': upComingApi,
 };
 
 Widget buildMoviesFutureBuilder({required String apiUrl}) {
