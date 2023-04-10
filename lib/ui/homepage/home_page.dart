@@ -79,7 +79,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-      body: buildMoviesFutureBuilder(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildMoviesFutureBuilder(),
+            buildMoviesFutureBuilder(),
+            buildMoviesFutureBuilder(),
+            buildMoviesFutureBuilder(),
+          ],
+        ),
+      ),
     );
   }
 }
