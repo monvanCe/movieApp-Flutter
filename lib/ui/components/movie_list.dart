@@ -1,12 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:movieapp/models/movie.dart';
 import 'package:movieapp/network/movie_api.dart';
-import 'package:movieapp/components/show_movie_details.dart';
+import 'package:movieapp/ui/components/show_movie_details.dart';
 
 final Map<String, String> apiUrls = {
   'Vizyonda Olanlar': nowPlayingApi,
