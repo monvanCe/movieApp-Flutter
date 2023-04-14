@@ -87,10 +87,8 @@ class _MoviesListState extends State<MoviesList> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            widget.title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          child:
+              Text(widget.title, style: Theme.of(context).textTheme.titleLarge),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
@@ -130,7 +128,7 @@ class _MoviesListState extends State<MoviesList> {
                                 iconSize: 20.0,
                                 icon: const Icon(
                                   Icons.favorite_border,
-                                  color: Colors.white,
+                                  color: Color(0xFFF7D633),
                                 ),
                               ),
                             ),

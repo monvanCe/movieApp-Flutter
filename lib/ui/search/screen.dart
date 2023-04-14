@@ -1,10 +1,20 @@
-// ignore_for_file: constant_identifier_names, library_private_types_in_public_api
+// ignore_for_file: constant_identifier_names, library_private_types_in_public_api, camel_case_types
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:movieapp/network/movie_api.dart';
+import 'package:movieapp/ui/components/show_movie_details.dart';
+
+class movieClass {
+  String title;
+  String posterPath;
+  String description;
+  double rating;
+
+  movieClass(this.title, this.posterPath, this.description, this.rating);
+}
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -37,14 +47,13 @@ class _SearchPageState extends State<SearchPage> {
             Container(
               margin: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32.0),
-                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.grey,
               ),
               child: TextField(
                 controller: _searchController,
-                style: const TextStyle(color: Colors.black),
                 decoration: const InputDecoration(
-                  hintText: 'Search',
+                  hintText: 'Film ara',
                   contentPadding: EdgeInsets.all(16.0),
                   border: InputBorder.none,
                 ),
@@ -63,28 +72,37 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 itemCount: _movies.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 5,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: _movies[index]['poster_path'] != null
-                        ? Image.network(
-                            'https://image.tmdb.org/t/p/w185${_movies[index]['poster_path']}',
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            width: 35,
-                            height: 35,
-                            color: Colors.white,
+                  return GestureDetector(
+                    onTap: () {
+                      var movie = movieClass(
+                          _movies[index]['title'],
+                          _movies[index]['poster_path'],
+                          _movies[index]['overview'],
+                          _movies[index]['vote_average']);
+                      showMovieDetails(context, movie);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 5,
+                            offset: const Offset(0, 2),
                           ),
+                        ],
+                      ),
+                      child: _movies[index]['poster_path'] != null
+                          ? Image.network(
+                              'https://image.tmdb.org/t/p/w185${_movies[index]['poster_path']}',
+                              fit: BoxFit.cover,
+                            )
+                          : Container(
+                              width: 35,
+                              height: 35,
+                              color: Colors.white,
+                            ),
+                    ),
                   );
                 },
               ),

@@ -17,11 +17,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: const Center(child: Text('Hoşgeldin $titleText')),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.black,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -29,13 +27,13 @@ class _HomePageState extends State<HomePage> {
               accountName: Text(accountName),
               accountEmail: Text(accountEmail),
               currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
                 child: Icon(Icons.person),
               ),
             ),
             ListTile(
               leading: const Icon(
                 Icons.home,
-                color: Colors.red,
               ),
               title: const Text('Home'),
               onTap: () {},
@@ -43,7 +41,6 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: const Icon(
                 Icons.settings,
-                color: Colors.green,
               ),
               title: const Text('Settings'),
               onTap: () {},
