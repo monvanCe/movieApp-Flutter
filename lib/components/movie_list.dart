@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:movieapp/models/movie.dart';
-import 'package:movieapp/network/movie_api.dart';
-import 'package:movieapp/ui/components/show_movie_details.dart';
+import 'package:movieapp/const/api.dart';
+import 'package:movieapp/components/show_movie_details.dart';
 
 final Map<String, String> apiUrls = {
   'Vizyonda Olanlar': nowPlayingApi,

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:movieapp/ui/components/movie_list.dart';
-import 'package:movieapp/datas/user.dart';
+import 'package:movieapp/components/movie_list.dart';
+import 'package:movieapp/const/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

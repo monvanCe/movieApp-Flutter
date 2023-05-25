@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:movieapp/ui/onboarding/screen.dart';
-import 'package:movieapp/ui/login/screen.dart';
-import 'package:movieapp/ui/register/screen.dart';
-import 'package:movieapp/ui/main/screen.dart';
+import 'package:movieapp/screens/onboarding/onboarding.dart';
+import 'package:movieapp/screens/login/login.dart';
+import 'package:movieapp/screens/register/register.dart';
+import 'package:movieapp/screens/bottombar/bottombar.dart';
 
 void main() {
   runApp(const Start());

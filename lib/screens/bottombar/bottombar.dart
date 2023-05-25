@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:movieapp/ui/home/screen.dart';
-import 'package:movieapp/ui/search/screen.dart';
-import 'package:movieapp/ui/favorites/screen.dart';
+import 'package:movieapp/ui/bottombar/home/screen.dart';
+import 'package:movieapp/ui/bottombar/search/screen.dart';
+import 'package:movieapp/ui/bottombar/favorites/screen.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);

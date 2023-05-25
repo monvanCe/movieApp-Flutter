@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:movieapp/network/movie_api.dart';
-import 'package:movieapp/ui/components/show_movie_details.dart';
+import 'package:movieapp/const/api.dart';
+import 'package:movieapp/components/show_movie_details.dart';
 
 class movieClass {
   String title;
