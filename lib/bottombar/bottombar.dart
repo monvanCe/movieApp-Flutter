@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:movieapp/ui/bottombar/home/screen.dart';
-import 'package:movieapp/ui/bottombar/search/screen.dart';
-import 'package:movieapp/ui/bottombar/favorites/screen.dart';
+import './Films/films.dart';
+import './search/search.dart';
+import './Profile/profile.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _MyAppState extends State<MainApp> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
+    const Films(),
     const SearchPage(),
     const FavoritesPage(),
   ];
@@ -24,25 +24,6 @@ class _MyAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          colorScheme: const ColorScheme(
-            background: Colors.black, // bi fikrim yok
-            brightness: Brightness.dark, // uygulama teması
-            error: Colors.red,
-            onBackground: Colors.black, // bi fikrim yok
-            onError: Colors.red, // hata kısmı
-            onPrimary: Color(0xFFF7D633), // primary
-            onSecondary: Colors.white,
-            onSurface: Colors.white, // appbar text
-            primary: Colors.black,
-            secondary: Colors.black,
-            surface: Colors.black,
-          ),
-          scaffoldBackgroundColor: Colors.black,
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Colors.black,
-            foregroundColor: Color(0xFFF7D633),
-          )),
       title: 'MovieApp',
       home: Scaffold(
         body: IndexedStack(
@@ -50,8 +31,8 @@ class _MyAppState extends State<MainApp> {
           children: _pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
-          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.black38,
+          selectedItemColor: Colors.black,
           currentIndex: _selectedIndex,
           unselectedFontSize: 12,
           selectedFontSize: 12,
@@ -63,10 +44,10 @@ class _MyAppState extends State<MainApp> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.movie,
+                Icons.movie_outlined,
                 size: 32,
               ),
-              label: 'Ana Sayfa',
+              label: 'Filmler',
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -77,10 +58,10 @@ class _MyAppState extends State<MainApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.favorite,
+                Icons.person,
                 size: 32,
               ),
-              label: 'Favoriler',
+              label: 'Profile',
             ),
           ],
         ),

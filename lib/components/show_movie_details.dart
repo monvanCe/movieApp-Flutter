@@ -12,27 +12,15 @@ void showMovieDetails(BuildContext context, movie) {
           children: [
             Stack(
               children: [
-                ShaderMask(
-                  shaderCallback: (rect) {
-                    return const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0.0, 0.90, 1.0],
-                      colors: [
-                        Colors.black,
-                        Colors.transparent,
-                        Colors.transparent,
-                      ],
-                    ).createShader(
-                        Rect.fromLTRB(0, 0, rect.width, rect.height));
-                  },
-                  blendMode: BlendMode.dstIn,
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width,
-                    child: ClipRRect(
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width,
+                  child: ClipRRect(
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.5), BlendMode.darken),
                       child: Image.network(
-                        'https://image.tmdb.org/t/p/w780${movie.posterPath}',
+                        'https://image.tmdb.org/t/p/w780${movie['poster_path']}',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -42,8 +30,9 @@ void showMovieDetails(BuildContext context, movie) {
                   bottom: 16,
                   left: 16,
                   right: 16,
-                  child: Text(movie.title,
+                  child: Text(movie['title'],
                       style: const TextStyle(
+                        color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -57,7 +46,7 @@ void showMovieDetails(BuildContext context, movie) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    movie.description,
+                    movie['overview'],
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
                   ),
                   Row(
@@ -65,14 +54,14 @@ void showMovieDetails(BuildContext context, movie) {
                     children: [
                       Container(
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
+                            shape: BoxShape.circle, color: Colors.black),
                         padding: const EdgeInsets.all(8),
                         child: Text(
-                          movie.rating.toStringAsFixed(1),
+                          movie['vote_average'].toStringAsFixed(1),
                           style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ],
