@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names, library_private_types_in_public_api, camel_case_types
 import 'package:flutter/material.dart';
 
-import '../../components/lists.dart';
+import '../../components/main_lists.dart';
 import '../../components/search_modal.dart';
 
 class SearchPage extends StatefulWidget {
@@ -62,13 +62,13 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
               ),
-              MovieListWidget(key: UniqueKey(), category: 'Vizyondakiler'),
+              MainList(key: UniqueKey(), category: 'Vizyondakiler'),
               const Divider(),
-              MovieListWidget(key: UniqueKey(), category: 'Popüler'),
+              MainList(key: UniqueKey(), category: 'Popüler'),
               const Divider(),
-              MovieListWidget(key: UniqueKey(), category: 'Beğenilenler'),
+              MainList(key: UniqueKey(), category: 'Beğenilenler'),
               const Divider(),
-              MovieListWidget(key: UniqueKey(), category: 'Yaklaşanlar'),
+              MainList(key: UniqueKey(), category: 'Yaklaşanlar'),
             ],
           ),
         ),

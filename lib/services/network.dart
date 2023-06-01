@@ -35,7 +35,7 @@ Future<dynamic> fetchMovies(String query) async {
   }
 }
 
-Future<List<dynamic>> searchMovies(String query) async {
+Future<List<dynamic>> searchFunction(String query) async {
   final url = '$searchApi&query=$query';
 
   try {

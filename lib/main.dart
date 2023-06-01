@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-import 'package:movieapp/bottombar/bottombar.dart';
+import 'package:flutter/services.dart';
+import './bottombar/bottombar.dart';
+import './state/global_variables.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -11,5 +13,10 @@ void main() {
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
 
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => GlobalState(),
+      child: const MainApp(),
+    ),
+  );
 }

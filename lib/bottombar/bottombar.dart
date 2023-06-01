@@ -17,7 +17,7 @@ class _MyAppState extends State<MainApp> {
   final List<Widget> _pages = [
     const Films(),
     const SearchPage(),
-    const FavoritesPage(),
+    const ProfilePage(),
   ];
 
   @override

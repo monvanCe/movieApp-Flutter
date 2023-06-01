@@ -1,22 +1,21 @@
-// ignore_for_file: library_private_types_in_public_api
-
+// ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import '../services/network.dart';
 import './show_movie_details.dart';
 import '../state/global_variables.dart';
 
-class MovieListWidget extends StatefulWidget {
+class MainList extends StatefulWidget {
   final String category;
 
-  const MovieListWidget({required Key key, required this.category})
-      : super(key: key);
+  const MainList({required Key key, required this.category}) : super(key: key);
 
   @override
-  _MovieListWidgetState createState() => _MovieListWidgetState();
+  _MainListState createState() => _MainListState();
 }
 
-class _MovieListWidgetState extends State<MovieListWidget> {
+class _MainListState extends State<MainList> {
   List<dynamic> movies = [];
 
   @override
@@ -76,6 +75,9 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                                 child: GestureDetector(
                                   onTap: () {
                                     GlobalState.movieToWatch.add(movie);
+                                    Provider.of<GlobalState>(context,
+                                            listen: false)
+                                        .notifyListeners();
                                   },
                                   child: Container(
                                     height: 28,
