@@ -32,10 +32,10 @@ class _MyAppState extends State<MainApp> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.black38,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.black87,
           currentIndex: _selectedIndex,
-          unselectedFontSize: 12,
-          selectedFontSize: 12,
+          unselectedFontSize: 10,
+          selectedFontSize: 10,
           onTap: (index) {
             setState(() {
               _selectedIndex = index;
