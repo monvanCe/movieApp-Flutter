@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -33,5 +32,22 @@ Future<dynamic> fetchMovies(String query) async {
     }
   } else {
     throw Exception('URL is null');
+  }
+}
+
+Future<List<dynamic>> searchMovies(String query) async {
+  final url = '$searchApi&query=$query';
+
+  try {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      return jsonData['results'] as List<dynamic>;
+    } else {
+      throw Exception(
+          'Failed to search movies. Status code: ${response.statusCode}');
+    }
+  } catch (error) {
+    throw Exception('Failed to search movies: $error');
   }
 }

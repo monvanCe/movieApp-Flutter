@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../../components/lists.dart';
+import '../../components/search_modal.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -27,7 +28,15 @@ class _SearchPageState extends State<SearchPage> {
                   height: 45,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return const SearchModal();
+                          },
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(231, 231, 231, 1),
                       elevation: 0,
@@ -54,8 +63,11 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
               MovieListWidget(key: UniqueKey(), category: 'Vizyondakiler'),
+              const Divider(),
               MovieListWidget(key: UniqueKey(), category: 'Popüler'),
+              const Divider(),
               MovieListWidget(key: UniqueKey(), category: 'Beğenilenler'),
+              const Divider(),
               MovieListWidget(key: UniqueKey(), category: 'Yaklaşanlar'),
             ],
           ),
