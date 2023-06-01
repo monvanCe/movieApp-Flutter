@@ -102,7 +102,10 @@ class Films extends StatelessWidget {
                   children: [
                     const Text(
                       'İzleme listen boş!',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     Image.asset(
@@ -112,7 +115,7 @@ class Films extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'Lütfen izleme listene bir şeyler ekle.',
+                      'İzlemek istediğin filmleri ekle.',
                       style: TextStyle(fontSize: 16, color: Colors.grey),
                     ),
                     const SizedBox(height: 20),
