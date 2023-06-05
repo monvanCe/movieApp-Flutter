@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//pages
 import './Films/films.dart';
 import './search/search.dart';
 import './Profile/profile.dart';

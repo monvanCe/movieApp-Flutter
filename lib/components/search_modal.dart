@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../components/show_movie_details.dart';
 import '../services/network.dart';
-import '../state/global_variables.dart';
+
+import '../utils/gstate_actions.dart';
 
 class SearchModal extends StatefulWidget {
   const SearchModal({super.key});
@@ -100,9 +100,7 @@ class _SearchModalState extends State<SearchModal> {
                         ),
                         trailing: GestureDetector(
                           onTap: () {
-                            GlobalState.movieToWatch.add(movie);
-                            Provider.of<GlobalState>(context, listen: false)
-                                .notifyListeners();
+                            movieToWatchAdd(context, movie);
                           },
                           child: Container(
                             margin: EdgeInsets.only(

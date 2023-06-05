@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
+//services
 import '../services/network.dart';
+
+//components
 import './show_movie_details.dart';
-import '../state/global_variables.dart';
+import './add_button.dart';
 
 class MainList extends StatefulWidget {
   final String category;
@@ -60,54 +62,7 @@ class _MainListState extends State<MainList> {
                         onTap: () => showMovieDetails(context, movie),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  'https://image.tmdb.org/t/p/w185${movie['poster_path']}',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Positioned(
-                                top: 8,
-                                right: 8,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    GlobalState.movieToWatch.add(movie);
-                                    Provider.of<GlobalState>(context,
-                                            listen: false)
-                                        .notifyListeners();
-                                  },
-                                  child: Container(
-                                    height: 28,
-                                    width: 28,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.5),
-                                      shape: BoxShape.rectangle,
-                                      border: Border.all(
-                                        color: const Color(
-                                            0xFFF7D633), // Border color
-                                        width: 1, // Border width
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                          4), // Border radius
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "+",
-                                        style: TextStyle(
-                                          color: Color(0xFFF7D633),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: MovieItem(movie: movie),
                         ),
                       );
                     },
@@ -118,6 +73,37 @@ class _MainListState extends State<MainList> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MovieItem extends StatefulWidget {
+  final dynamic movie;
+
+  const MovieItem({Key? key, required this.movie}) : super(key: key);
+
+  @override
+  _MovieItemState createState() => _MovieItemState();
+}
+
+class _MovieItemState extends State<MovieItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.network(
+            'https://image.tmdb.org/t/p/w185${widget.movie['poster_path']}',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned(
+          top: 8,
+          right: 8,
+          child: AddButton(movie: widget.movie),
+        ),
+      ],
     );
   }
 }

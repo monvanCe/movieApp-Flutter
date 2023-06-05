@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names, library_private_types_in_public_api, camel_case_types
 import 'package:flutter/material.dart';
 
+//components
 import '../../components/main_lists.dart';
 import '../../components/search_modal.dart';
 

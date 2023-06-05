@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../state/global_variables.dart';
 import 'package:provider/provider.dart';
+
+//state
+import '../../state/global_variables.dart';
+
+//components
 import '../../components/show_movie_details.dart';
 import '../../components/search_modal.dart';
 
