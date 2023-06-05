@@ -7,7 +7,7 @@ import './state/global_variables.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white, // Set the notification bar color
+    statusBarColor: Colors.white,
     systemNavigationBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarIconBrightness: Brightness.dark,

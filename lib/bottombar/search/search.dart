@@ -30,13 +30,7 @@ class _SearchPageState extends State<SearchPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) {
-                            return const SearchModal();
-                          },
-                        ),
-                      );
+                      showSearchModal(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(231, 231, 231, 1),

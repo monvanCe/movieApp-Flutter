@@ -6,7 +6,7 @@ import '../services/network.dart';
 
 //components
 import './show_movie_details.dart';
-import './add_button.dart';
+import './main_list_item.dart';
 
 class MainList extends StatefulWidget {
   final String category;
@@ -73,37 +73,6 @@ class _MainListState extends State<MainList> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class MovieItem extends StatefulWidget {
-  final dynamic movie;
-
-  const MovieItem({Key? key, required this.movie}) : super(key: key);
-
-  @override
-  _MovieItemState createState() => _MovieItemState();
-}
-
-class _MovieItemState extends State<MovieItem> {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            'https://image.tmdb.org/t/p/w185${widget.movie['poster_path']}',
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned(
-          top: 8,
-          right: 8,
-          child: AddButton(movie: widget.movie),
-        ),
-      ],
     );
   }
 }

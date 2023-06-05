@@ -45,8 +45,7 @@ class _AddButtonState extends State<AddButton> {
         height: 28,
         width: 28,
         decoration: BoxDecoration(
-          color:
-              isAdded ? const Color(0xFFF7D633) : Colors.black.withOpacity(0.5),
+          color: isAdded ? const Color(0xFFF7D633) : Colors.transparent,
           shape: BoxShape.rectangle,
           border: Border.all(
             color: const Color(0xFFF7D633), // Border color
