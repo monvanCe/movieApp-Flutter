@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/components/add_button.dart';
 
 void showMovieDetails(BuildContext context, movie) {
   showModalBottomSheet(
@@ -7,66 +8,124 @@ void showMovieDetails(BuildContext context, movie) {
     useRootNavigator: true,
     builder: (BuildContext context) {
       return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: Stack(
           children: [
-            Stack(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: MediaQuery.of(context).size.width,
-                  child: ClipRRect(
-                    child: ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.5), BlendMode.darken),
-                      child: Image.network(
-                        'https://image.tmdb.org/t/p/w780${movie['poster_path']}',
-                        fit: BoxFit.cover,
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      width: MediaQuery.of(context).size.width,
+                      child: ClipRRect(
+                        child: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(0.5),
+                            BlendMode.darken,
+                          ),
+                          child: Image.network(
+                            'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 16,
-                  left: 16,
-                  right: 16,
-                  child: Text(movie['title'],
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.start),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    movie['overview'],
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.black),
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          movie['vote_average'].toStringAsFixed(1),
-                          style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                    Positioned(
+                      bottom: 32,
+                      left: 16,
+                      child: Text(
+                        movie['title'],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
                         ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 16,
+                      left: 16,
+                      child: Text(
+                        movie['original_title'],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.calendar_month,
+                                color: Colors.grey,
+                                size: 24,
+                              ),
+                              const SizedBox(width: 10),
+                              Text(movie['release_date']),
+                            ],
+                          ),
+                          AddButton(movie: movie),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      const Divider(),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Film Bilgileri',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        movie['overview'],
+                        style:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(),
+                      ),
+                      const SizedBox(height: 20),
+                      const Divider(),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Color(0xFFF7D633),
+                          ),
+                          const SizedBox(width: 10),
+                          Text("${movie['vote_count']} kişi bu filmi izledi"),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black54,
+                ),
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  movie['vote_average'].toStringAsFixed(1),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],
