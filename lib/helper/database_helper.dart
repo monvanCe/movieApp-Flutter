@@ -42,7 +42,7 @@ class DatabaseHelper {
 
     return database.delete(
       'moviesToWatch',
-      where: 'id = ?',
+      where: 'MovieId = ?',
       whereArgs: [movieId],
     );
   }

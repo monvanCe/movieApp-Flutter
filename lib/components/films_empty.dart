@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/utils/db_actions.dart';
 
 //components
 import '../components/search_modal.dart';
@@ -33,7 +32,7 @@ Widget filmsEmpty(BuildContext context) {
             width: 160,
             child: ElevatedButton(
               onPressed: () {
-                dbGet();
+                showSearchModal(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFF7D633),

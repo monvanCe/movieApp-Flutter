@@ -16,10 +16,7 @@ void dbRemove(BuildContext context, movie) async {
   await DatabaseHelper().removeMovieById(movie['id']);
 }
 
-void dbGet() async {
+Future dbGet() async {
   final moviesToWatch = await DatabaseHelper().getMoviesToWatch();
-  for (final movie in moviesToWatch) {
-    print('Movie ID: ${movie['movieId']}');
-  }
-  print('-----------');
+  return moviesToWatch;
 }

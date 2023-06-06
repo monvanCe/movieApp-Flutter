@@ -11,6 +11,9 @@ import './state/global_variables.dart';
 //helper
 import './helper/database_helper.dart';
 
+//utils
+import './utils/db_to_gs.dart';
+
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.white,
@@ -20,13 +23,17 @@ void main() async {
   ));
 
   WidgetsFlutterBinding.ensureInitialized();
-
   await DatabaseHelper().initializeDatabase();
 
   runApp(
     ChangeNotifierProvider(
       create: (_) => GlobalState(),
-      child: const MainApp(),
+      child: Builder(
+        builder: (context) {
+          dbToGs(context);
+          return const MainApp();
+        },
+      ),
     ),
   );
 }

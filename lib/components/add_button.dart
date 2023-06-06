@@ -31,10 +31,8 @@ class _AddButtonState extends State<AddButton> {
       isAdded = !isAdded;
       if (isAdded) {
         dbAdd(context, widget.movie);
-        dbGet();
       } else {
         dbRemove(context, widget.movie);
-        dbGet();
       }
     });
   }

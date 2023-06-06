@@ -9,3 +9,5 @@ const String topRatedApi = '$baseUrl/movie/top_rated?api_key=$apiKey$options';
 const String upComingApi = '$baseUrl/movie/upcoming?api_key=$apiKey$options';
 
 const String searchApi = '$baseUrl/search/movie?api_key=$apiKey$options';
+
+const String getMovie = '$baseUrl/movie';

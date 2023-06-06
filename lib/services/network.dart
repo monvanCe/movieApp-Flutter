@@ -41,13 +41,21 @@ Future<List<dynamic>> searchFunction(String query) async {
 
   try {
     final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      return jsonData['results'] as List<dynamic>;
-    } else {
-      throw Exception(
-          'Failed to search movies. Status code: ${response.statusCode}');
-    }
+
+    final jsonData = jsonDecode(response.body);
+    return jsonData['results'] as List<dynamic>;
+  } catch (error) {
+    throw Exception('Failed to search movies: $error');
+  }
+}
+
+Future fetchMovie(movieId) async {
+  final url = '$getMovie/$movieId?api_key=$apiKey$options';
+
+  try {
+    final response = await http.get(Uri.parse(url));
+    final jsonData = jsonDecode(response.body);
+    return jsonData;
   } catch (error) {
     throw Exception('Failed to search movies: $error');
   }
