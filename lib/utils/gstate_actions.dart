@@ -6,11 +6,11 @@ import 'package:provider/provider.dart';
 import '../state/global_variables.dart';
 
 void movieToWatchAdd(BuildContext context, movie) {
-  GlobalState.movieToWatch.add(movie);
+  GlobalState.moviesToWatch.add(movie);
   Provider.of<GlobalState>(context, listen: false).notifyListeners();
 }
 
 void movieToWatchRemove(BuildContext context, movie) {
-  GlobalState.movieToWatch.removeWhere((obj) => obj['id'] == movie['id']);
+  GlobalState.moviesToWatch.removeWhere((obj) => obj['id'] == movie['id']);
   Provider.of<GlobalState>(context, listen: false).notifyListeners();
 }

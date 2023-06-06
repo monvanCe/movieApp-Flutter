@@ -34,7 +34,7 @@ Widget searchModalList(BuildContext context, movie) {
           ),
         ),
         subtitle: Text(
-          'Tarih: ${movie['release_date']}',
+          '${movie['original_title']}',
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,

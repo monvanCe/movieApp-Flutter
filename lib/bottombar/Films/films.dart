@@ -32,7 +32,7 @@ class Films extends StatelessWidget {
       ),
       body: Consumer<GlobalState>(
         builder: (context, globalState, _) {
-          if (GlobalState.movieToWatch.isNotEmpty) {
+          if (GlobalState.moviesToWatch.isNotEmpty) {
             return filmsGrid(context);
           } else {
             return filmsEmpty(context);

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../state/global_variables.dart';
 
 //utils
-import '../utils/gstate_actions.dart';
+import '../utils/db_actions.dart';
 
 class AddButton extends StatefulWidget {
   final dynamic movie;
@@ -22,7 +22,7 @@ class _AddButtonState extends State<AddButton> {
   @override
   void initState() {
     super.initState();
-    isAdded = GlobalState.movieToWatch
+    isAdded = GlobalState.moviesToWatch
         .any((movie) => movie['id'] == widget.movie['id']);
   }
 
@@ -30,9 +30,11 @@ class _AddButtonState extends State<AddButton> {
     setState(() {
       isAdded = !isAdded;
       if (isAdded) {
-        movieToWatchAdd(context, widget.movie);
+        dbAdd(context, widget.movie);
+        dbGet();
       } else {
-        movieToWatchRemove(context, widget.movie);
+        dbRemove(context, widget.movie);
+        dbGet();
       }
     });
   }

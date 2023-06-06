@@ -20,9 +20,9 @@ Widget filmsGrid(BuildContext context) {
           crossAxisSpacing: 5,
           mainAxisSpacing: 5,
         ),
-        itemCount: GlobalState.movieToWatch.length,
+        itemCount: GlobalState.moviesToWatch.length,
         itemBuilder: (context, index) {
-          var movie = GlobalState.movieToWatch[index];
+          var movie = GlobalState.moviesToWatch[index];
           return GestureDetector(
             onTap: () {
               showMovieDetails(context, movie);
