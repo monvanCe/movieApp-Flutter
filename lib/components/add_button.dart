@@ -32,7 +32,7 @@ class AddButton extends StatelessWidget {
         return GestureDetector(
           onTap: toggleIsAdded,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300), // Animation duration
+            duration: const Duration(milliseconds: 300),
             height: 28,
             width: 28,
             decoration: BoxDecoration(
@@ -46,8 +46,7 @@ class AddButton extends StatelessWidget {
             ),
             child: Center(
               child: AnimatedSwitcher(
-                duration:
-                    const Duration(milliseconds: 300), // Animation duration
+                duration: const Duration(milliseconds: 300),
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return FadeTransition(
                     opacity: animation,

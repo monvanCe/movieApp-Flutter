@@ -21,7 +21,7 @@ void movieToWatchGS(BuildContext context) async {
 }
 
 void watchedMoviesGS(BuildContext context) async {
-  final watchedMovies = await dbMoviesToWatchGet();
+  final watchedMovies = await dbWatchedMoviesGet();
 
   if (watchedMovies.length > 0) {
     for (final movie in watchedMovies) {

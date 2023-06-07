@@ -49,16 +49,17 @@ class _FilmsState extends State<Films> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              'İzleme Listesi',
-              style: TextStyle(color: Color(0xFFF7D633)),
+              'İZLEME LİSTESİ',
+              style: TextStyle(color: Color(0xFFF7D633), fontSize: 14),
             ),
             const Text(
-              'İzlenen Filmler',
-              style: TextStyle(color: Color(0xFFF7D633)),
+              'İZLENEN FİLMLER',
+              style: TextStyle(color: Color(0xFFF7D633), fontSize: 14),
             )
           ],
         ),
         backgroundColor: Colors.white,
+        toolbarHeight: 40,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
           child: AnimatedAlign(

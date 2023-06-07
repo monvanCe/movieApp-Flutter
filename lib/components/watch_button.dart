@@ -32,7 +32,7 @@ class WatchButton extends StatelessWidget {
         return GestureDetector(
           onTap: toggleIsWatched,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300), // Animation duration
+            duration: const Duration(milliseconds: 300),
             height: 32,
             width: 32,
             decoration: BoxDecoration(
@@ -42,8 +42,7 @@ class WatchButton extends StatelessWidget {
             ),
             child: Center(
               child: AnimatedSwitcher(
-                duration:
-                    const Duration(milliseconds: 300), // Animation duration
+                duration: const Duration(milliseconds: 300),
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return FadeTransition(
                     opacity: animation,

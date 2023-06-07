@@ -15,7 +15,7 @@ Widget searchModalList(BuildContext context, movie) {
               ? showMovieDetails(context, movie)
               : null;
         },
-        contentPadding: EdgeInsets.zero, // Remove the default padding
+        contentPadding: EdgeInsets.zero,
         leading: SizedBox(
             width: 80,
             height: 120,

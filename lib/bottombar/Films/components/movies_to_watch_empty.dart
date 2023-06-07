@@ -37,14 +37,13 @@ Widget moviesToWatchEmpty(BuildContext context) {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFF7D633),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(20), // Set the desired radius value
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               child: const Text(
-                'Film Ara',
+                'Filmlere Gözat',
                 style: TextStyle(
-                  color: Colors.black, // Set the desired text color
+                  color: Colors.black,
                 ),
               ),
             ),

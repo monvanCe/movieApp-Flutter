@@ -46,23 +46,23 @@ class _MyAppState extends State<MainApp> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.movie_outlined,
-                size: 32,
+                size: 28,
               ),
               label: 'Filmler',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
-                size: 32,
+                size: 28,
               ),
-              label: 'Ara',
+              label: 'Keşfet',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                size: 32,
+                size: 28,
               ),
-              label: 'Profile',
+              label: 'Profil',
             ),
           ],
         ),

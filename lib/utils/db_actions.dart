@@ -32,6 +32,6 @@ void dbWatchedMoviesRemove(BuildContext context, movie) async {
 }
 
 Future dbWatchedMoviesGet() async {
-  final watchedMovies = await DatabaseHelper().getMoviesToWatch();
+  final watchedMovies = await DatabaseHelper().getWatchedMovies();
   return watchedMovies;
 }
