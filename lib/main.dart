@@ -16,8 +16,8 @@ import './utils/db_to_gs.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    systemNavigationBarColor: Colors.white,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
@@ -30,7 +30,8 @@ void main() async {
       create: (_) => GlobalState(),
       child: Builder(
         builder: (context) {
-          dbToGs(context);
+          movieToWatchGS(context);
+          watchedMoviesGS(context);
           return const MainApp();
         },
       ),

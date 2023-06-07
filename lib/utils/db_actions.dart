@@ -6,17 +6,32 @@ import '../helper/database_helper.dart';
 //utils
 import './gstate_actions.dart';
 
-void dbAdd(BuildContext context, movie) async {
+void dbMoviesToWatchAdd(BuildContext context, movie) async {
   movieToWatchAdd(context, movie);
-  await DatabaseHelper().insertMovieId(movie['id']);
+  await DatabaseHelper().insertWatchToMoviesById(movie['id']);
 }
 
-void dbRemove(BuildContext context, movie) async {
+void dbMoviesToWatchRemove(BuildContext context, movie) async {
   movieToWatchRemove(context, movie);
-  await DatabaseHelper().removeMovieById(movie['id']);
+  await DatabaseHelper().removeWatchToMoviesById(movie['id']);
 }
 
-Future dbGet() async {
+Future dbMoviesToWatchGet() async {
   final moviesToWatch = await DatabaseHelper().getMoviesToWatch();
   return moviesToWatch;
+}
+
+void dbWatchedMoviesAdd(BuildContext context, movie) async {
+  watchedMoviesAdd(context, movie);
+  await DatabaseHelper().insertWatchedMoviesById(movie['id']);
+}
+
+void dbWatchedMoviesRemove(BuildContext context, movie) async {
+  watchedMoviesRemove(context, movie);
+  await DatabaseHelper().removeWatchedMoviesById(movie['id']);
+}
+
+Future dbWatchedMoviesGet() async {
+  final watchedMovies = await DatabaseHelper().getMoviesToWatch();
+  return watchedMovies;
 }

@@ -1,5 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../components/add_button.dart';
@@ -20,8 +20,9 @@ class _MovieItemState extends State<MovieItem> {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            'https://image.tmdb.org/t/p/w185${widget.movie['poster_path']}',
+          child: CachedNetworkImage(
+            imageUrl:
+                'https://image.tmdb.org/t/p/w185${widget.movie['poster_path']}',
             fit: BoxFit.cover,
           ),
         ),

@@ -14,3 +14,13 @@ void movieToWatchRemove(BuildContext context, movie) {
   GlobalState.moviesToWatch.removeWhere((obj) => obj['id'] == movie['id']);
   Provider.of<GlobalState>(context, listen: false).notifyListeners();
 }
+
+void watchedMoviesAdd(BuildContext context, movie) {
+  GlobalState.watchedMovies.add(movie);
+  Provider.of<GlobalState>(context, listen: false).notifyListeners();
+}
+
+void watchedMoviesRemove(BuildContext context, movie) {
+  GlobalState.watchedMovies.removeWhere((obj) => obj['id'] == movie['id']);
+  Provider.of<GlobalState>(context, listen: false).notifyListeners();
+}

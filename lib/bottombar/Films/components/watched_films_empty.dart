@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 //components
-import '../components/search_modal.dart';
+import '../../../components/search_modal.dart';
 
-Widget filmsEmpty(BuildContext context) {
+Widget watchedMoviesEmpty(BuildContext context) {
   return SafeArea(
     child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'İzleme listen boş!',
+            'İzlenen filmin hiç yok!',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -24,7 +24,7 @@ Widget filmsEmpty(BuildContext context) {
           ),
           const SizedBox(height: 20),
           const Text(
-            'İzlemek istediğin filmleri ekle.',
+            'Bir kaç film izle.',
             style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
           const SizedBox(height: 20),

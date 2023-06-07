@@ -16,18 +16,25 @@ class DatabaseHelper {
     return openDatabase(
       pathToDatabase,
       onCreate: (db, version) {
-        return db.execute('''
-          CREATE TABLE moviesToWatch (
-            id INTEGER PRIMARY KEY,
-            movieId INTEGER
-          )
-        ''');
+        db.execute('''
+        CREATE TABLE moviesToWatch (
+          id INTEGER PRIMARY KEY,
+          movieId INTEGER
+        )
+      ''');
+
+        db.execute('''
+        CREATE TABLE watchedMovies (
+          id INTEGER PRIMARY KEY,
+          movieId INTEGER
+        )
+      ''');
       },
       version: 1,
     );
   }
 
-  Future<int> insertMovieId(int movieId) async {
+  Future<int> insertWatchToMoviesById(int movieId) async {
     final database = await initializeDatabase();
 
     return database.insert(
@@ -37,7 +44,7 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> removeMovieById(int movieId) async {
+  Future<int> removeWatchToMoviesById(int movieId) async {
     final database = await initializeDatabase();
 
     return database.delete(
@@ -51,5 +58,31 @@ class DatabaseHelper {
     final database = await initializeDatabase();
 
     return database.query('moviesToWatch');
+  }
+
+  Future<int> insertWatchedMoviesById(int movieId) async {
+    final database = await initializeDatabase();
+
+    return database.insert(
+      'watchedMovies',
+      {'movieId': movieId},
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
+  }
+
+  Future<int> removeWatchedMoviesById(int movieId) async {
+    final database = await initializeDatabase();
+
+    return database.delete(
+      'watchedMovies',
+      where: 'MovieId = ?',
+      whereArgs: [movieId],
+    );
+  }
+
+  Future<List<Map<String, dynamic>>> getWatchedMovies() async {
+    final database = await initializeDatabase();
+
+    return database.query('watchedMovies');
   }
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+//components
 import 'package:movieapp/components/add_button.dart';
+import 'package:movieapp/components/watch_button.dart';
 
 void showMovieDetails(BuildContext context, movie) {
   showModalBottomSheet(
@@ -24,8 +28,9 @@ void showMovieDetails(BuildContext context, movie) {
                             Colors.black.withOpacity(0.5),
                             BlendMode.darken,
                           ),
-                          child: Image.network(
-                            'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}',
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -76,7 +81,15 @@ void showMovieDetails(BuildContext context, movie) {
                               Text(movie['release_date']),
                             ],
                           ),
-                          AddButton(movie: movie),
+                          Row(
+                            children: [
+                              AddButton(movie: movie),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              WatchButton(movie: movie),
+                            ],
+                          ),
                         ],
                       ),
                       const SizedBox(height: 20),
@@ -101,7 +114,7 @@ void showMovieDetails(BuildContext context, movie) {
                             color: Color(0xFFF7D633),
                           ),
                           const SizedBox(width: 10),
-                          Text("${movie['vote_count']} kişi bu filmi izledi"),
+                          Text("${movie['vote_count']}k kişi bu filmi izledi"),
                         ],
                       ),
                     ],
