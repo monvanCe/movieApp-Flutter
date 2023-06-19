@@ -50,7 +50,7 @@ Future<List<dynamic>> searchFunction(String query) async {
 }
 
 Future fetchMovie(movieId) async {
-  final url = '$getMovie/$movieId?api_key=$apiKey$options';
+  final url = '$getMovieApi/$movieId?api_key=$apiKey$options';
 
   try {
     final response = await http.get(Uri.parse(url));

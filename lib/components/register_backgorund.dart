@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class TopRatedMoviesWidget extends StatefulWidget {
-  const TopRatedMoviesWidget({super.key});
+class RegisterLoginBackground extends StatefulWidget {
+  const RegisterLoginBackground({super.key});
 
   @override
-  _TopRatedMoviesWidgetState createState() => _TopRatedMoviesWidgetState();
+  _RegisterLoginBackground createState() => _RegisterLoginBackground();
 }
 
-class _TopRatedMoviesWidgetState extends State<TopRatedMoviesWidget> {
+class _RegisterLoginBackground extends State<RegisterLoginBackground> {
   List<String> movieImageUrls = [];
 
   @override
@@ -36,11 +36,11 @@ class _TopRatedMoviesWidgetState extends State<TopRatedMoviesWidget> {
       movieImageUrls = [
         ...results.map<String>((movie) {
           final posterPath = movie['poster_path'];
-          return 'https://image.tmdb.org/t/p/w92/$posterPath';
+          return 'https://image.tmdb.org/t/p/w154/$posterPath';
         }),
         ...results2.take(40 - results.length).map<String>((movie) {
           final posterPath = movie['poster_path'];
-          return 'https://image.tmdb.org/t/p/w92/$posterPath';
+          return 'https://image.tmdb.org/t/p/w154/$posterPath';
         })
       ];
     });
@@ -49,22 +49,33 @@ class _TopRatedMoviesWidgetState extends State<TopRatedMoviesWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SizedBox.expand(
-      child: GridView.builder(
-        padding: const EdgeInsets.all(0),
-        itemCount: movieImageUrls.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 0,
-          mainAxisSpacing: 0,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return CachedNetworkImage(
-            imageUrl: movieImageUrls[index],
-            fit: BoxFit.fill,
-          );
-        },
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(0),
+              itemCount: movieImageUrls.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 0,
+                childAspectRatio: 2 / 3,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return CachedNetworkImage(
+                  imageUrl: movieImageUrls[index],
+                  fit: BoxFit.cover,
+                );
+              },
+            ),
+          ),
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.65),
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }

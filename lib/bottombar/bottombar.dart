@@ -1,9 +1,15 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //pages
 import './Films/films.dart';
 import './search/search.dart';
 import './Profile/profile.dart';
+
+//state
+import '../state/global_variables.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);
@@ -19,7 +25,7 @@ class _MyAppState extends State<MainApp> {
   final List<Widget> _pages = [
     const FilmsPage(),
     const SearchPage(),
-    ProfilePage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -43,6 +49,12 @@ class _MyAppState extends State<MainApp> {
             setState(() {
               _selectedIndex = index;
             });
+
+            if (index == 2) {
+              GlobalState.user['isLogged'] = !GlobalState.user['isLogged'];
+              Provider.of<GlobalState>(context, listen: false)
+                  .notifyListeners();
+            }
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

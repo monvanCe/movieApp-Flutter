@@ -10,4 +10,4 @@ const String upComingApi = '$baseUrl/movie/upcoming?api_key=$apiKey$options';
 
 const String searchApi = '$baseUrl/search/movie?api_key=$apiKey$options';
 
-const String getMovie = '$baseUrl/movie';
+const String getMovieApi = '$baseUrl/movie';
