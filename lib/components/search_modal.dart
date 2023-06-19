@@ -38,7 +38,7 @@ class _SearchModalState extends State<SearchModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.05),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Column(

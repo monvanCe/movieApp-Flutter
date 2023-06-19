@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36963965846",
+    "project_id": "movieapp-monvance",
+    "storage_bucket": "movieapp-monvance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36963965846:android:564acb06f15176ae56dbb7",
+        "android_client_info": {
+          "package_name": "com.example.movieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36963965846-0vdpqn5ue3n67rfp4mooepj0fhpr1ftq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPFqZtMfYb8J9PJmGPx24FGBy1JNDGCq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36963965846-0vdpqn5ue3n67rfp4mooepj0fhpr1ftq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

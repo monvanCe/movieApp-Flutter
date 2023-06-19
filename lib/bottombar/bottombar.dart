@@ -13,17 +13,19 @@ class MainApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MainApp> {
+  bool isLoggin = false;
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Films(),
+    const FilmsPage(),
     const SearchPage(),
-    const ProfilePage(),
+    ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: const Color.fromRGBO(60, 60, 60, 1)),
       debugShowCheckedModeBanner: false,
       title: 'MovieApp',
       home: Scaffold(

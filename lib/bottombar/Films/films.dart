@@ -12,14 +12,14 @@ import 'components/movies_to_watch_empty.dart';
 import 'components/watched_films_grid.dart';
 import 'components/watched_films_empty.dart';
 
-class Films extends StatefulWidget {
-  const Films({Key? key}) : super(key: key);
+class FilmsPage extends StatefulWidget {
+  const FilmsPage({Key? key}) : super(key: key);
 
   @override
   _FilmsState createState() => _FilmsState();
 }
 
-class _FilmsState extends State<Films> {
+class _FilmsState extends State<FilmsPage> {
   late PageController _pageController;
   int _currentPageIndex = 0;
 
@@ -46,16 +46,47 @@ class _FilmsState extends State<Films> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'İZLEME LİSTESİ',
-              style: TextStyle(color: Color(0xFFF7D633), fontSize: 14),
+            Expanded(
+              flex: 1,
+              child: InkWell(
+                  onTap: () {
+                    _pageController.animateToPage(0,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    child: const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'İZLEME LİSTESİ',
+                        style:
+                            TextStyle(color: Color(0xFFF7D633), fontSize: 14),
+                      ),
+                    ),
+                  )),
             ),
-            const Text(
-              'İZLENEN FİLMLER',
-              style: TextStyle(color: Color(0xFFF7D633), fontSize: 14),
-            )
+            Expanded(
+              flex: 1,
+              child: InkWell(
+                  onTap: () {
+                    _pageController.animateToPage(1,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'İZLENENLER LİSTESİ',
+                        style:
+                            TextStyle(color: Color(0xFFF7D633), fontSize: 14),
+                      ),
+                    ),
+                  )),
+            ),
           ],
         ),
         backgroundColor: Colors.white,
@@ -77,15 +108,13 @@ class _FilmsState extends State<Films> {
       ),
       body: PageView(
         controller: _pageController,
+        physics: const AlwaysScrollableScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             _currentPageIndex = index;
           });
         },
-        children: const [
-          FilmsToWatchScreen(),
-          FilmsWatchedScreen(),
-        ],
+        children: [const FilmsToWatchScreen(), const FilmsWatchedScreen()],
       ),
     );
   }
