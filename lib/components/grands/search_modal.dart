@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 //components
-import 'package:movieapp/components/search_modal_list.dart';
+import '../../components/parents/search_modal_list.dart';
 
 //services
-import '../services/network.dart';
+import '../../services/network.dart';
 
 void showSearchModal(BuildContext context) {
   showModalBottomSheet(

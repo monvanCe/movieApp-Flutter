@@ -3,42 +3,46 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // state
-import '../state/global_variables.dart';
+import '../../state/global_variables.dart';
 
 // utils
-import '../utils/db_actions.dart';
+import '../../utils/database/db_actions.dart';
 
-class WatchButton extends StatelessWidget {
+class AddButton extends StatelessWidget {
   final dynamic movie;
 
-  const WatchButton({required this.movie, Key? key}) : super(key: key);
+  const AddButton({required this.movie, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Consumer<GlobalState>(
       builder: (context, globalState, child) {
-        bool isWatched =
-            GlobalState.watchedMovies.any((obj) => obj['id'] == movie['id']);
+        bool isAdded =
+            GlobalState.moviesToWatch.any((obj) => obj['id'] == movie['id']);
 
-        void toggleIsWatched() {
-          if (!isWatched) {
-            dbWatchedMoviesAdd(context, movie);
-            dbMoviesToWatchRemove(context, movie);
-          } else {
+        void toggleIsAdded() {
+          if (!isAdded) {
+            dbMoviesToWatchAdd(context, movie);
             dbWatchedMoviesRemove(context, movie);
+          } else {
+            dbMoviesToWatchRemove(context, movie);
           }
         }
 
         return GestureDetector(
-          onTap: toggleIsWatched,
+          onTap: toggleIsAdded,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: 32,
-            width: 32,
+            height: 28,
+            width: 28,
             decoration: BoxDecoration(
-              color: isWatched ? Colors.green : Colors.black12,
+              color: isAdded ? const Color(0xFFF7D633) : Colors.transparent,
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: const Color(0xFFF7D633),
+                width: 1,
+              ),
             ),
             child: Center(
               child: AnimatedSwitcher(
@@ -50,9 +54,9 @@ class WatchButton extends StatelessWidget {
                   );
                 },
                 child: Icon(
-                  Icons.done,
-                  key: ValueKey<bool>(isWatched),
-                  color: isWatched ? Colors.white : Colors.black45,
+                  isAdded ? Icons.close : Icons.add,
+                  key: ValueKey<bool>(isAdded),
+                  color: isAdded ? Colors.black : const Color(0xFFF7D633),
                 ),
               ),
             ),

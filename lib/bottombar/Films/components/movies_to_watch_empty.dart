@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //components
-import '../../../components/search_modal.dart';
+import '../../../components/grands/search_modal.dart';
 
 Widget moviesToWatchEmpty(BuildContext context) {
   return SafeArea(

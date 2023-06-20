@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../state/global_variables.dart';
 
 // components
-import '../../../components/show_movie_details.dart';
+import '../../../components/grands/show_movie_details.dart';
 
 Widget moviesToWatchGrid(BuildContext context) {
   return Container(

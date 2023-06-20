@@ -19,14 +19,37 @@ class DatabaseHelper {
         db.execute('''
         CREATE TABLE moviesToWatch (
           id INTEGER PRIMARY KEY,
-          movieId INTEGER
+          title STRING,
+          original_title STRING,
+          release_date STRING,
+          overview STRING,
+          poster_path STRING,
+          vote_average STRING,
+          vote_count INTEGER,
+          backdrop_path STRING
         )
       ''');
 
         db.execute('''
         CREATE TABLE watchedMovies (
           id INTEGER PRIMARY KEY,
-          movieId INTEGER
+          title STRING,
+          original_title STRING,
+          release_date STRING,
+          overview STRING,
+          poster_path STRING,
+          vote_average STRING,
+          vote_count INTEGER,
+          backdrop_path STRING
+        )
+      ''');
+        db.execute('''
+        CREATE TABLE user (
+          id INTEGER PRIMARY KEY,
+          isLogged BOOL,
+          UID STRING,
+          username STRING,
+          mail STRING
         )
       ''');
       },
@@ -34,22 +57,67 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> insertWatchToMoviesById(int movieId) async {
+  Future saveUser(user) async {
     final database = await initializeDatabase();
 
     return database.insert(
-      'moviesToWatch',
-      {'movieId': movieId},
+      'user',
+      {
+        'isLogged': 1,
+        'UID': user['UID'],
+        'username': user['username'],
+        'mail': user['username']
+      },
       conflictAlgorithm: ConflictAlgorithm.ignore,
     );
   }
 
-  Future<int> removeWatchToMoviesById(int movieId) async {
+  Future<Map<String, Object?>?> getUser() async {
+    final database = await initializeDatabase();
+
+    final users = await database.query('user');
+
+    if (users.isNotEmpty) {
+      return users.first;
+    } else {
+      return null;
+    }
+  }
+
+  Future removeUser() async {
+    final database = await initializeDatabase();
+
+    await database.transaction((txn) async {
+      await txn.execute('DROP TABLE IF EXISTS user');
+    });
+  }
+
+  Future insertWatchToMoviesById(movie) async {
+    final database = await initializeDatabase();
+
+    return database.insert(
+      'moviesToWatch',
+      {
+        'id': movie['id'],
+        'title': movie['title'],
+        'original_title': movie['original_title'],
+        'release_date': movie['release_date'],
+        'overview': movie['overview'],
+        'poster_path': movie['poster_path'],
+        'vote_average': movie['vote_average'].toString(),
+        'vote_count': movie['vote_count'],
+        'backdrop_path': movie['backdrop_path']
+      },
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
+  }
+
+  Future removeWatchToMoviesById(int movieId) async {
     final database = await initializeDatabase();
 
     return database.delete(
       'moviesToWatch',
-      where: 'MovieId = ?',
+      where: 'id = ?',
       whereArgs: [movieId],
     );
   }
@@ -60,12 +128,22 @@ class DatabaseHelper {
     return database.query('moviesToWatch');
   }
 
-  Future<int> insertWatchedMoviesById(int movieId) async {
+  Future<int> insertWatchedMoviesById(movie) async {
     final database = await initializeDatabase();
 
     return database.insert(
       'watchedMovies',
-      {'movieId': movieId},
+      {
+        'id': movie['id'],
+        'title': movie['title'],
+        'original_title': movie['original_title'],
+        'release_date': movie['release_date'],
+        'overview': movie['overview'],
+        'poster_path': movie['poster_path'],
+        'vote_average': movie['vote_average'].toString(),
+        'vote_count': movie['vote_count'],
+        'backdrop_path': movie['backdrop_path']
+      },
       conflictAlgorithm: ConflictAlgorithm.ignore,
     );
   }
@@ -75,7 +153,7 @@ class DatabaseHelper {
 
     return database.delete(
       'watchedMovies',
-      where: 'MovieId = ?',
+      where: 'id = ?',
       whereArgs: [movieId],
     );
   }

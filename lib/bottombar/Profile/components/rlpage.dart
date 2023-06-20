@@ -1,15 +1,18 @@
 // ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 import 'package:flutter/material.dart';
-import 'package:movieapp/state/global_variables.dart';
 import 'package:provider/provider.dart';
 
 //components
-import '../../../components/register_backgorund.dart';
+import '../../../components/parents/register_backgorund.dart';
 
 //utils
 import '../../../utils/firebase/check_if_registered.dart';
 import '../../../utils/firebase/register.dart';
 import '../../../utils/firebase/login.dart';
+import '../../../helper/database_helper.dart';
+
+//state
+import '../../../state/global_variables.dart';
 
 class RegisterLoginPage extends StatefulWidget {
   const RegisterLoginPage({super.key});
@@ -186,7 +189,9 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                     'isLogged': true,
                     'username': value?.user?.displayName,
                     'mail': value?.user?.email,
+                    'UID': value?.user?.uid
                   };
+                  DatabaseHelper().saveUser(GlobalState.user);
                   Provider.of<GlobalState>(context, listen: false)
                       .notifyListeners();
                 },
@@ -243,7 +248,9 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                       'isLogged': true,
                       'username': value.user?.displayName,
                       'mail': value.user?.email,
+                      'UID': value.user?.uid
                     };
+                    DatabaseHelper().saveUser(GlobalState.user);
                     Provider.of<GlobalState>(context, listen: false)
                         .notifyListeners();
                   }

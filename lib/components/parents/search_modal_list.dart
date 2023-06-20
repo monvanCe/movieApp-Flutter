@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 //components
-import './show_movie_details.dart';
-import './add_button.dart';
-import './watch_button.dart';
+import '../grands/show_movie_details.dart';
+import '../childs/add_button.dart';
+import '../childs/watch_button.dart';
 
 Widget searchModalList(BuildContext context, movie) {
   return Column(

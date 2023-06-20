@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 //components
-import '../../components/main_lists.dart';
-import '../../components/search_modal.dart';
+import '../../components/parents/main_lists.dart';
+import '../../components/grands/search_modal.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

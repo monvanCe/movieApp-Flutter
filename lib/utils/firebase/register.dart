@@ -10,7 +10,6 @@ Future<UserCredential?> registerUser(
       password: password,
     );
 
-    // Kayıt başarılı ise displayName'i kullanıcının profiline ekle
     if (userCredential.user != null) {
       User? user = userCredential.user;
       await user?.updateDisplayName(displayName);

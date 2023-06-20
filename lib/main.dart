@@ -15,7 +15,7 @@ import './state/global_variables.dart';
 import './helper/database_helper.dart';
 
 //utils
-import './utils/db_to_gs.dart';
+import 'utils/database/db_to_gs.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -44,6 +44,7 @@ void main() async {
         builder: (context) {
           movieToWatchGS(context);
           watchedMoviesGS(context);
+          setUser(context);
           return const MainApp();
         },
       ),

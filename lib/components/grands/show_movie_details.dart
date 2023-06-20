@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 //components
-import 'package:movieapp/components/add_button.dart';
-import 'package:movieapp/components/watch_button.dart';
+import '../childs/add_button.dart';
+import '../childs/watch_button.dart';
 
 void showMovieDetails(BuildContext context, movie) {
   showModalBottomSheet(
@@ -96,7 +96,7 @@ void showMovieDetails(BuildContext context, movie) {
                       const Divider(),
                       const SizedBox(height: 20),
                       const Text(
-                        'Film Bilgileri',
+                        'Film Açıklaması',
                         style: TextStyle(fontSize: 24),
                       ),
                       const SizedBox(height: 10),
@@ -132,7 +132,7 @@ void showMovieDetails(BuildContext context, movie) {
                 ),
                 padding: const EdgeInsets.all(12),
                 child: Text(
-                  movie['vote_average'].toStringAsFixed(1),
+                  "${movie['vote_average']}",
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

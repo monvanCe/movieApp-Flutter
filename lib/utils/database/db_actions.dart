@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 //helper
-import '../helper/database_helper.dart';
+import '../../helper/database_helper.dart';
 
 //utils
-import './gstate_actions.dart';
+import '../gstate_actions.dart';
 
 void dbMoviesToWatchAdd(BuildContext context, movie) async {
   movieToWatchAdd(context, movie);
-  await DatabaseHelper().insertWatchToMoviesById(movie['id']);
+  await DatabaseHelper().insertWatchToMoviesById(movie);
 }
 
 void dbMoviesToWatchRemove(BuildContext context, movie) async {
@@ -23,7 +23,7 @@ Future dbMoviesToWatchGet() async {
 
 void dbWatchedMoviesAdd(BuildContext context, movie) async {
   watchedMoviesAdd(context, movie);
-  await DatabaseHelper().insertWatchedMoviesById(movie['id']);
+  await DatabaseHelper().insertWatchedMoviesById(movie);
 }
 
 void dbWatchedMoviesRemove(BuildContext context, movie) async {
@@ -34,4 +34,9 @@ void dbWatchedMoviesRemove(BuildContext context, movie) async {
 Future dbWatchedMoviesGet() async {
   final watchedMovies = await DatabaseHelper().getWatchedMovies();
   return watchedMovies;
+}
+
+Future dbGetUser() async {
+  final user = await DatabaseHelper().getUser();
+  return user;
 }

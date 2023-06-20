@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
     return Consumer<GlobalState>(
       builder: (context, state, _) {
         if (GlobalState.user['isLogged']) {
-          return const Scaffold(
+          return Scaffold(
             body: UserView(),
           );
         } else {

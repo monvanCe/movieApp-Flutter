@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 
 //services
-import '../services/network.dart';
+import '../../services/network.dart';
 
 //components
-import './show_movie_details.dart';
-import './main_list_item.dart';
+import '../grands/show_movie_details.dart';
+import '../childs/main_list_item.dart';
 
 class MainList extends StatefulWidget {
   final String category;

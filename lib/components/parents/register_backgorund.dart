@@ -32,18 +32,20 @@ class _RegisterLoginBackground extends State<RegisterLoginBackground> {
     final jsonData2 = json.decode(response2.body);
     final results2 = jsonData2['results'];
 
-    setState(() {
-      movieImageUrls = [
-        ...results.map<String>((movie) {
-          final posterPath = movie['poster_path'];
-          return 'https://image.tmdb.org/t/p/w154/$posterPath';
-        }),
-        ...results2.take(40 - results.length).map<String>((movie) {
-          final posterPath = movie['poster_path'];
-          return 'https://image.tmdb.org/t/p/w154/$posterPath';
-        })
-      ];
-    });
+    if (mounted) {
+      setState(() {
+        movieImageUrls = [
+          ...results.map<String>((movie) {
+            final posterPath = movie['poster_path'];
+            return 'https://image.tmdb.org/t/p/w154/$posterPath';
+          }),
+          ...results2.take(40 - results.length).map<String>((movie) {
+            final posterPath = movie['poster_path'];
+            return 'https://image.tmdb.org/t/p/w154/$posterPath';
+          })
+        ];
+      });
+    }
   }
 
   @override

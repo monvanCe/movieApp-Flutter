@@ -1,15 +1,21 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:movieapp/components/show_movie_details.dart';
 import 'package:provider/provider.dart';
 
 //components
-import '../../../components/profile_list_item.dart';
+import '../../../components/childs/profile_list_item.dart';
+import '../../../components/grands/show_movie_details.dart';
 
 //state
 import '../../../state/global_variables.dart';
 
+//utils
+import '../../../utils/total_time_calc.dart';
+
 class UserView extends StatelessWidget {
-  const UserView({Key? key}) : super(key: key);
+  UserView({super.key});
+
+  var times = calculateTimes(GlobalState.watchedMovies);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +63,7 @@ class UserView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Text('${GlobalState.user["username"]}'),
+              Text('${GlobalState.user['username']}'),
               const SizedBox(
                 height: 20,
               ),
@@ -76,30 +82,30 @@ class UserView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Column(
-                                children: const [
-                                  Text('00'),
-                                  SizedBox(
+                                children: [
+                                  Text("${times['months']}"),
+                                  const SizedBox(
                                     height: 10,
                                   ),
-                                  Text('months')
+                                  const Text('months')
                                 ],
                               ),
                               Column(
-                                children: const [
-                                  Text('00'),
-                                  SizedBox(
+                                children: [
+                                  Text("${times['days']}"),
+                                  const SizedBox(
                                     height: 10,
                                   ),
-                                  Text('days')
+                                  const Text('days')
                                 ],
                               ),
                               Column(
-                                children: const [
-                                  Text('00'),
-                                  SizedBox(
+                                children: [
+                                  Text("${times['hours']}"),
+                                  const SizedBox(
                                     height: 10,
                                   ),
-                                  Text('hours')
+                                  const Text('hours')
                                 ],
                               ),
                             ],
