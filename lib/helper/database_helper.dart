@@ -57,6 +57,12 @@ class DatabaseHelper {
     );
   }
 
+  Future<void> resetTable(String tableName) async {
+    final database = await initializeDatabase();
+
+    await database.delete(tableName);
+  }
+
   Future saveUser(user) async {
     final database = await initializeDatabase();
 

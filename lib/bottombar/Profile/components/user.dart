@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:movieapp/helper/database_helper.dart';
 import 'package:provider/provider.dart';
 
 //components
@@ -203,6 +204,10 @@ class UserView extends StatelessWidget {
                       backgroundColor: const Color(0xFFF7D633)),
                   onPressed: () {
                     dbRemoveUser(context);
+                    DatabaseHelper().resetTable('watchedMovies');
+                    DatabaseHelper().resetTable('moviesToWatch');
+                    GlobalState.moviesToWatch = [];
+                    GlobalState.watchedMovies = [];
                   },
                   child: const Text(
                     'çıkış yap',

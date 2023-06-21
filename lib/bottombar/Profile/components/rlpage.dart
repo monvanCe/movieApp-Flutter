@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 import 'package:flutter/material.dart';
 import 'package:movieapp/utils/database/db_actions.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 //components
 import '../../../components/parents/register_backgorund.dart';
@@ -220,20 +221,53 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFF7D633)),
             onPressed: () {
-              registerUser(_emailController.text.trim(),
-                      _passwordController.text, _usernameController.text.trim())
-                  .then(
-                (value) {
-                  if (value != null) {
-                    dbSaveUser(context, {
-                      'isLogged': true,
-                      'username': _usernameController.text.trim(),
-                      'mail': _emailController.text.trim(),
-                      'UID': value.user?.uid
-                    });
-                  }
-                },
-              );
+              if (_usernameController.text.trim().isEmpty) {
+                Fluttertoast.showToast(
+                  msg: "Lütfen bir kullanıcı ismi giriniz",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.TOP,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+              } else {
+                registerUser(
+                        _emailController.text.trim(),
+                        _passwordController.text,
+                        _usernameController.text.trim())
+                    .then(
+                  (value) {
+                    if (value != null) {
+                      dbSaveUser(context, {
+                        'isLogged': true,
+                        'username': _usernameController.text.trim(),
+                        'mail': _emailController.text.trim(),
+                        'UID': value.user?.uid
+                      });
+                      Fluttertoast.showToast(
+                        msg: "Kayıt başarılı",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.TOP,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: "en az 6 haneli bir şifre giriniz",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.TOP,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                    }
+                  },
+                );
+              }
             },
             child: const Text(
               'Kayıt ol',
@@ -307,6 +341,25 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                       'username': value.user?.displayName,
                       'mail': value.user?.email
                     });
+                    Fluttertoast.showToast(
+                      msg: "Giriş Başarılı",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                  } else {
+                    Fluttertoast.showToast(
+                      msg: "Şifrenizi Kontrol Ediniz",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
                   }
                 },
               );
