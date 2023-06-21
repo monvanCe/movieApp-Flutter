@@ -10,7 +10,6 @@ class GenreChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<int> genreIds = [];
 
-    // genre_ids değerlerini tüm filmler için toplama
     for (final movie in movies) {
       if (movie['genre_ids'] is String) {
         if (movie['genre_ids'] != null) {
@@ -32,13 +31,11 @@ class GenreChart extends StatelessWidget {
       }
     }
 
-    // en çok tekrar eden genre_ids değerlerini bulma
     final Map<int, int> genreCounts = {};
     for (final genreId in genreIds) {
       genreCounts[genreId] = (genreCounts[genreId] ?? 0) + 1;
     }
 
-    // en çok tekrar eden genre_ids değerlerini sıralama
     final sortedGenres = genreCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -46,13 +43,11 @@ class GenreChart extends StatelessWidget {
       sortedGenres.removeRange(5, sortedGenres.length);
     }
 
-    // Grafik veri setini oluşturma
     final data = [
       for (final entry in sortedGenres)
         GenreCount(entry.key, entry.value, getGenreName(entry.key)),
     ];
 
-    // Grafik serisini oluşturma
     final series = [
       charts.Series<GenreCount, String>(
         id: 'Genres',
@@ -63,7 +58,6 @@ class GenreChart extends StatelessWidget {
       ),
     ];
 
-    // Grafik oluşturma
     final chart = charts.BarChart(
       series,
       animate: true,
