@@ -51,10 +51,10 @@ class GenreChart extends StatelessWidget {
     final series = [
       charts.Series<GenreCount, String>(
         id: 'Genres',
-        domainFn: (GenreCount count, _) =>
-            count.genreName, // genreName kullanıldı
+        domainFn: (GenreCount count, _) => count.genreName,
         measureFn: (GenreCount count, _) => count.count,
         data: data,
+        colorFn: (_, __) => charts.Color.fromHex(code: '#f7d633'),
       ),
     ];
 
