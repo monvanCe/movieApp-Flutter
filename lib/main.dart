@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +15,8 @@ import './state/global_variables.dart';
 import './helper/database_helper.dart';
 
 //utils
-import 'utils/database/db_to_gs.dart';
+import './utils/database/db_to_gs.dart';
+import './utils/firebase_sync/main_sync.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -45,6 +46,7 @@ void main() async {
           movieToWatchGS(context);
           watchedMoviesGS(context);
           setUser(context);
+          mainSync(context);
           return const MainApp();
         },
       ),

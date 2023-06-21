@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:movieapp/utils/database/db_actions.dart';
 
 //components
 import '../../../components/parents/register_backgorund.dart';
@@ -9,10 +9,6 @@ import '../../../components/parents/register_backgorund.dart';
 import '../../../utils/firebase/check_if_registered.dart';
 import '../../../utils/firebase/register.dart';
 import '../../../utils/firebase/login.dart';
-import '../../../helper/database_helper.dart';
-
-//state
-import '../../../state/global_variables.dart';
 
 class RegisterLoginPage extends StatefulWidget {
   const RegisterLoginPage({super.key});
@@ -109,22 +105,37 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
           const Text(
             'Email adresinizi girin',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 16),
           TextField(
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
             controller: _emailController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.mail),
+              prefixIconColor: const Color(0xFFC9AE29),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: Colors.black,
               labelText: 'Email',
+              labelStyle: const TextStyle(color: Colors.white),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFF7D633),
+            ),
             onPressed: () {
               String email = _emailController.text.trim();
               checkIfUserExists(email).then((bool isExist) {
@@ -138,7 +149,10 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                 );
               });
             },
-            child: const Text('İleri'),
+            child: const Text(
+              'İleri',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ],
       ),
@@ -152,52 +166,79 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Kullanıcı ismi ve Parola girin',
+            'Kayıt ol.',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 16),
           TextField(
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
             controller: _usernameController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.mail),
+              prefixIconColor: const Color(0xFFC9AE29),
               filled: true,
-              fillColor: Colors.white,
-              labelText: 'Kullanıcı İsmi',
+              fillColor: Colors.black,
+              labelText: 'Kullanıcı ismi',
+              labelStyle: const TextStyle(color: Colors.white),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           TextField(
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
             controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.mail),
+              prefixIconColor: const Color(0xFFC9AE29),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: Colors.black,
               labelText: 'Parola',
+              labelStyle: const TextStyle(color: Colors.white),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFF7D633)),
             onPressed: () {
               registerUser(_emailController.text.trim(),
                       _passwordController.text, _usernameController.text.trim())
                   .then(
                 (value) {
-                  GlobalState.user = {
-                    'isLogged': true,
-                    'username': value?.user?.displayName,
-                    'mail': value?.user?.email,
-                    'UID': value?.user?.uid
-                  };
-                  DatabaseHelper().saveUser(GlobalState.user);
-                  Provider.of<GlobalState>(context, listen: false)
-                      .notifyListeners();
+                  if (value != null) {
+                    dbSaveUser(context, {
+                      'isLogged': true,
+                      'username': _usernameController.text.trim(),
+                      'mail': _emailController.text.trim(),
+                      'UID': value.user?.uid
+                    });
+                  }
                 },
               );
             },
-            child: const Text('Kayıt ol'),
+            child: const Text(
+              'Kayıt ol',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           const SizedBox(height: 16),
           TextButton(
@@ -207,7 +248,10 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                 curve: Curves.easeInOut,
               );
             },
-            child: const Text('Geri'),
+            child: const Text(
+              'Geri',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -221,43 +265,56 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Parolanı gir',
+            'Giriş Yap.',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 16),
           TextField(
+            style: const TextStyle(color: Colors.white),
+            cursorColor: Colors.white,
             controller: _passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.mail),
+              prefixIconColor: const Color(0xFFC9AE29),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: Colors.black,
               labelText: 'Parola',
+              labelStyle: const TextStyle(color: Colors.white),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
             ),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFF7D633)),
             onPressed: () {
               loginUser(_emailController.text.trim(), _passwordController.text)
                   .then(
                 (value) {
                   if (value != null) {
-                    GlobalState.user = {
-                      'isLogged': true,
+                    dbSaveUser(context, {
+                      'UID': value.user?.uid,
                       'username': value.user?.displayName,
-                      'mail': value.user?.email,
-                      'UID': value.user?.uid
-                    };
-                    DatabaseHelper().saveUser(GlobalState.user);
-                    Provider.of<GlobalState>(context, listen: false)
-                        .notifyListeners();
+                      'mail': value.user?.email
+                    });
                   }
                 },
               );
             },
-            child: const Text('Giriş Yap'),
+            child: const Text(
+              'Giriş Yap',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           const SizedBox(height: 16),
           TextButton(
@@ -267,7 +324,10 @@ class _RegisterLoginPage extends State<RegisterLoginPage> {
                 curve: Curves.easeInOut,
               );
             },
-            child: const Text('Geri'),
+            child: const Text(
+              'Geri',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),

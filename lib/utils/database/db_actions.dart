@@ -36,6 +36,16 @@ Future dbWatchedMoviesGet() async {
   return watchedMovies;
 }
 
+void dbSaveUser(BuildContext context, user) async {
+  saveUser(context, user);
+  await DatabaseHelper().saveUser(user);
+}
+
+void dbRemoveUser(BuildContext context) async {
+  removeUser(context);
+  await DatabaseHelper().removeUser();
+}
+
 Future dbGetUser() async {
   final user = await DatabaseHelper().getUser();
   return user;

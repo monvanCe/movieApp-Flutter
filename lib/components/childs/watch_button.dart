@@ -7,6 +7,8 @@ import '../../state/global_variables.dart';
 
 // utils
 import '../../utils/database/db_actions.dart';
+import '../../utils/firebase_sync/fmovie_add.dart';
+import '../../utils/firebase_sync/fmovie_remove.dart';
 
 class WatchButton extends StatelessWidget {
   final dynamic movie;
@@ -21,11 +23,17 @@ class WatchButton extends StatelessWidget {
             GlobalState.watchedMovies.any((obj) => obj['id'] == movie['id']);
 
         void toggleIsWatched() {
-          if (!isWatched) {
+          if (isWatched) {
+            dbWatchedMoviesRemove(context, movie);
+            if (GlobalState.user['isLogged'] == true) {
+              fMovieRemove(movie['id']);
+            }
+          } else {
+            if (GlobalState.user['isLogged'] == true) {
+              fMovieAdd(GlobalState.user['UID'], movie['id'], true);
+            }
             dbWatchedMoviesAdd(context, movie);
             dbMoviesToWatchRemove(context, movie);
-          } else {
-            dbWatchedMoviesRemove(context, movie);
           }
         }
 

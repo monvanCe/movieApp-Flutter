@@ -74,22 +74,25 @@ class DatabaseHelper {
 
   Future<Map<String, Object?>?> getUser() async {
     final database = await initializeDatabase();
+    List user;
 
-    final users = await database.query('user');
+    user = await database.query('user');
 
-    if (users.isNotEmpty) {
-      return users.first;
+    if (user.isNotEmpty) {
+      return user.first;
     } else {
-      return null;
+      return {'isLogged': 0, 'username': '', 'mail': ''};
     }
   }
 
   Future removeUser() async {
     final database = await initializeDatabase();
 
-    await database.transaction((txn) async {
-      await txn.execute('DROP TABLE IF EXISTS user');
-    });
+    await database.delete(
+      'user',
+      where: 'isLogged = ?',
+      whereArgs: [1],
+    );
   }
 
   Future insertWatchToMoviesById(movie) async {

@@ -49,7 +49,7 @@ Future<List<dynamic>> searchFunction(String query) async {
   }
 }
 
-Future fetchMovie(movieId) async {
+Future fetchMovieById(movieId) async {
   final url = '$getMovieApi/$movieId?api_key=$apiKey$options';
 
   try {

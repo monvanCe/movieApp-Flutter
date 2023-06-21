@@ -44,12 +44,19 @@ void watchedMoviesGS(BuildContext context) async {
 void setUser(BuildContext context) async {
   final user = await dbGetUser();
 
-  if (user != null) {
+  if (user['isLogged'] == 1) {
     GlobalState.user = {
       'isLogged': true,
       'UID': user['UID'],
       'username': user['username'],
       'mail': user['mail'],
+    };
+  } else {
+    GlobalState.user = {
+      'isLogged': false,
+      'UID': '',
+      'username': '',
+      'mail': ''
     };
   }
 

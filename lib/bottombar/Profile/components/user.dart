@@ -11,6 +11,7 @@ import '../../../state/global_variables.dart';
 
 //utils
 import '../../../utils/total_time_calc.dart';
+import '../../../utils/database/db_actions.dart';
 
 class UserView extends StatelessWidget {
   UserView({super.key});
@@ -197,6 +198,16 @@ class UserView extends StatelessWidget {
                   },
                 ),
               ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF7D633)),
+                  onPressed: () {
+                    dbRemoveUser(context);
+                  },
+                  child: const Text(
+                    'çıkış yap',
+                    style: TextStyle(color: Colors.black),
+                  ))
             ],
           ),
         );

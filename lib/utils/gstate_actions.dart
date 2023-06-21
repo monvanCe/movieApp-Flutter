@@ -24,3 +24,18 @@ void watchedMoviesRemove(BuildContext context, movie) {
   GlobalState.watchedMovies.removeWhere((obj) => obj['id'] == movie['id']);
   Provider.of<GlobalState>(context, listen: false).notifyListeners();
 }
+
+void saveUser(BuildContext context, user) {
+  GlobalState.user = {
+    'isLogged': true,
+    'UID': user['UID'],
+    'username': user['username'],
+    'mail': user['mail']
+  };
+  Provider.of<GlobalState>(context, listen: false).notifyListeners();
+}
+
+void removeUser(BuildContext context) {
+  GlobalState.user = {'isLogged': false, 'UID': '', 'username': '', 'mail': ''};
+  Provider.of<GlobalState>(context, listen: false).notifyListeners();
+}
