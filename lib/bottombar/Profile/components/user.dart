@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:movieapp/components/grands/chart.dart';
 import 'package:movieapp/helper/database_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -199,6 +200,17 @@ class UserView extends StatelessWidget {
                   },
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 500,
+                width: MediaQuery.of(context).size.width,
+                child: GenreChart(movies: [
+                  ...GlobalState.moviesToWatch,
+                  ...GlobalState.watchedMovies
+                ]),
+              ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF7D633)),
@@ -212,7 +224,7 @@ class UserView extends StatelessWidget {
                   child: const Text(
                     'çıkış yap',
                     style: TextStyle(color: Colors.black),
-                  ))
+                  )),
             ],
           ),
         );

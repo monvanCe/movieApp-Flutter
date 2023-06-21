@@ -26,7 +26,8 @@ class DatabaseHelper {
           poster_path STRING,
           vote_average STRING,
           vote_count INTEGER,
-          backdrop_path STRING
+          backdrop_path STRING,
+          genre_ids STRING
         )
       ''');
 
@@ -40,7 +41,8 @@ class DatabaseHelper {
           poster_path STRING,
           vote_average STRING,
           vote_count INTEGER,
-          backdrop_path STRING
+          backdrop_path STRING,
+          genre_ids STRING
         )
       ''');
         db.execute('''
@@ -115,7 +117,8 @@ class DatabaseHelper {
         'poster_path': movie['poster_path'],
         'vote_average': movie['vote_average'].toString(),
         'vote_count': movie['vote_count'],
-        'backdrop_path': movie['backdrop_path']
+        'backdrop_path': movie['backdrop_path'],
+        'genre_ids': "${movie['genre_ids']}"
       },
       conflictAlgorithm: ConflictAlgorithm.ignore,
     );
@@ -151,7 +154,8 @@ class DatabaseHelper {
         'poster_path': movie['poster_path'],
         'vote_average': movie['vote_average'].toString(),
         'vote_count': movie['vote_count'],
-        'backdrop_path': movie['backdrop_path']
+        'backdrop_path': movie['backdrop_path'],
+        'genre_ids': "${movie['genre_ids']}"
       },
       conflictAlgorithm: ConflictAlgorithm.ignore,
     );
